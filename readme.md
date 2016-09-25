@@ -1,7 +1,7 @@
 # makethen
 
 [![npm](https://img.shields.io/npm/v/makethen.svg?style=flat-square)](https://www.npmjs.com/package/makethen)
-[![travis](https://img.shields.io/travis/deeosweet/makethen/master.svg?style=flat-square)](https://travis-ci.org/deepsweet/makethen)
+[![travis](https://img.shields.io/travis/deepsweet/makethen/master.svg?style=flat-square)](https://travis-ci.org/deepsweet/makethen)
 [![coverage](https://img.shields.io/codecov/c/github/deepsweet/makethen.svg?style=flat-square)](https://codecov.io/github/deepsweet/makethen)
 [![deps](https://img.shields.io/gemnasium/deepsweet/makethen.svg?style=flat-square)](https://gemnasium.com/deepsweet/makethen)
 
