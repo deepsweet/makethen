@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "tough/config/common",
+    "tough/config/node",
+    "tough/config/esnext"
+  ],
+  "rules": {
+    "no-magic-numbers": 0,
+    "no-invalid-this": 0,
+    "consistent-return": 0
+  }
+}
