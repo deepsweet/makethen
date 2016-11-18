@@ -28,7 +28,7 @@
     "start-env": "^2.0.0",
     "start-eslint": "^3.0.0",
     "start-files": "^1.0.0",
-    "start-istanbul": "^2.1.0",
+    "start-istanbul": "^2.1.1",
     "start-pretty-reporter": "^0.2.6",
     "start-read": "^0.2.0",
     "start-tape": "^0.1.3",
