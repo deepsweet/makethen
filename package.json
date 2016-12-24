@@ -20,7 +20,7 @@
     "eslint": "^3.6.0",
     "eslint-config-tough": "^0.1.2",
     "husky": "^0.11.8",
-    "start": "^4.0.2",
+    "start": "^5.0.0",
     "start-babel": "^2.1.1",
     "start-babel-cli": "^3.0.0",
     "start-clean": "^1.0.2",
