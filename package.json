@@ -26,7 +26,7 @@
     "start-clean": "^1.0.2",
     "start-codecov": "^1.0.1",
     "start-env": "^2.0.0",
-    "start-eslint": "^3.0.0",
+    "start-eslint": "^3.0.1",
     "start-files": "^1.0.0",
     "start-istanbul": "^2.1.0",
     "start-pretty-reporter": "^0.2.6",
