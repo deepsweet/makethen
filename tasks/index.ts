@@ -110,5 +110,5 @@ export const publish = (version, otp) =>
   sequence(
     pack(),
     npmVersion(version),
-    npmPublish({ otp })
+    npmPublish('./', { otp })
   )
