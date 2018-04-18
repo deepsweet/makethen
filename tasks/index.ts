@@ -106,9 +106,9 @@ export const ci = () =>
     codecov
   )
 
-export const publish = (version) =>
+export const publish = (version, otp) =>
   sequence(
     pack(),
     npmVersion(version),
-    npmPublish()
+    npmPublish({ otp })
   )
