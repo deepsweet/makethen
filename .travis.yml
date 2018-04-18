@@ -1,24 +1,21 @@
 # https://docs.travis-ci.com/user/customizing-the-build/
 
 sudo: false
-
 language: node_js
-
 node_js:
-  - "4"
-  - "5"
-  - "6"
-
+  - 8
+env:
+  global:
+    - PATH=$HOME/.yarn/bin:$PATH
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+cache:
+  yarn: true
+  directories:
+    - node_modules
 branches:
   only:
     - master
-    - /^greenkeeper-.*$/
-
 matrix:
   fast_finish: true
-
-before_install:
-  - npm install -g npm
-  - npm --version
-
-script: npm start ci
+script: yarn start ci
