@@ -97,6 +97,7 @@
     "rules": {
       "no-undef": "off",
       "no-unused-vars": "off",
+      "space-infix-ops": "off",
       "node/no-unsupported-features": [
         "error",
         {
