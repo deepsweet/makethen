@@ -7,7 +7,7 @@ Promisify Node.js-style callbacks with native Promise.
 
 ## Requirements
 
-* Node.js >= 8
+* Node.js >= 6
 * [`esm` loader](https://github.com/standard-things/esm)
 
 ## Install
