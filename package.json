@@ -1,6 +1,6 @@
 {
   "name": "makethen",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Promisify Node.js-style callbacks with native Promise",
   "keywords": "promise, promisify, callback",
   "homepage": "https://github.com/deepsweet/makethen",
