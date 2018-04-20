@@ -67,14 +67,14 @@ export const dev = () => watch('src/*.ts')(pack())
 
 export const lint = () =>
   sequence(
-    find('@(src|test|tasks)/*.ts'),
+    find('{src,test,tasks}/*.ts'),
     read,
     eslint()
   )
 
 export const fix = () =>
   sequence(
-    find('@(src|test|tasks)/*.ts'),
+    find('{src,test,tasks}/*.ts'),
     read,
     eslint({ fix: true }),
     overwrite
