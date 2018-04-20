@@ -1,5 +1,5 @@
-export type NodeCallback1<R > = (err: any, res?: R) => void
-export type NodeCallback2<R1, R2 > = (err: any, res1: R1, res2: R2) => void
+export type NodeCallback1<R> = (err: any, res?: R) => void
+export type NodeCallback2<R1, R2> = (err: any, res1: R1, res2: R2) => void
 export type NodeCallback3<R1, R2, R3> = (err: any, res1: R1, res2: R2, res3: R3) => void
 
 function makethen<A, R1, R2, R3>(fn: (arg: A, cb: NodeCallback3<R1, R2, R3>) => void): (arg: A) => Promise<[R1, R2, R3]>
