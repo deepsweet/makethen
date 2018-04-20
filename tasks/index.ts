@@ -8,6 +8,7 @@ import write from '@start/plugin-write'
 import overwrite from '@start/plugin-overwrite'
 import babel from '@start/plugin-lib-babel'
 import typescriptGenerate from '@start/plugin-lib-typescript-generate'
+import typescriptCheck from '@start/plugin-lib-typescript-check'
 import watch from '@start/plugin-watch'
 import eslint from '@start/plugin-lib-eslint'
 import {
@@ -49,11 +50,7 @@ export const build = () =>
 export const dts = () =>
   sequence(
     find('src/*.ts'),
-    typescriptGenerate('build/', [
-      '--lib',
-      'esnext',
-      '--allowSyntheticDefaultImports'
-    ])
+    typescriptGenerate('build/')
   )
 
 export const pack = () =>
@@ -69,7 +66,8 @@ export const lint = () =>
   sequence(
     find('{src,test,tasks}/*.ts'),
     read,
-    eslint()
+    eslint(),
+    typescriptCheck()
   )
 
 export const fix = () =>
