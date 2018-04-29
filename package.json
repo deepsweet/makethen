@@ -20,27 +20,11 @@
     "@babel/preset-env": "^7.0.0-beta.46",
     "@babel/preset-typescript": "^7.0.0-beta.46",
     "@babel/register": "^7.0.0-beta.46",
+    "@deepsweet/start-preset-node-ts-lib": "^0.1.0-0",
     "@start/cli": "^0.1.0-6",
-    "@start/plugin-find": "^0.1.0-4",
-    "@start/plugin-lib-babel": "^0.1.0-1",
-    "@start/plugin-lib-codecov": "^0.1.0-1",
-    "@start/plugin-lib-eslint": "^0.1.0-3",
-    "@start/plugin-lib-istanbul": "^0.1.0-3",
-    "@start/plugin-lib-npm-publish": "^0.1.0-2",
-    "@start/plugin-lib-npm-version": "^0.1.0-2",
-    "@start/plugin-lib-tape": "^0.1.0-2",
-    "@start/plugin-lib-typescript-check": "^0.1.0-1",
-    "@start/plugin-lib-typescript-generate": "^0.1.0-2",
-    "@start/plugin-overwrite": "^0.1.0-3",
-    "@start/plugin-parallel": "^0.1.0-4",
-    "@start/plugin-read": "^0.1.0-3",
-    "@start/plugin-remove": "^0.1.0-2",
-    "@start/plugin-rename": "^0.1.0-3",
-    "@start/plugin-sequence": "^0.1.0-3",
-    "@start/plugin-watch": "^0.1.0-3",
-    "@start/plugin-write": "^0.1.0-4",
     "@start/reporter-verbose": "^0.1.0-2",
     "@types/node": "^9.6.5",
+    "eslint": "^4.19.1",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-node": "^6.0.1",
@@ -52,11 +36,24 @@
     "typescript-eslint-parser": "^15.0.0"
   },
   "start": {
+    "preset": "@deepsweet/start-preset-node-ts-lib",
     "require": [
       "esm",
       [
         "@babel/register",
         {
+          "presets": [
+            [
+              "@babel/preset-env",
+              {
+                "targets": {
+                  "node": "current"
+                },
+                "modules": false
+              }
+            ],
+            "@babel/preset-typescript"
+          ],
           "extensions": [
             ".ts",
             ".js"
@@ -65,20 +62,6 @@
       ]
     ],
     "reporter": "@start/reporter-verbose"
-  },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "current"
-          },
-          "modules": false
-        }
-      ],
-      "@babel/preset-typescript"
-    ]
   },
   "eslintConfig": {
     "parser": "typescript-eslint-parser",

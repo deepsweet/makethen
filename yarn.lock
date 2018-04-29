@@ -543,6 +543,33 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
+"@deepsweet/start-preset-node-ts-lib@^0.1.0-0":
+  version "0.1.0-0"
+  resolved "https://registry.yarnpkg.com/@deepsweet/start-preset-node-ts-lib/-/start-preset-node-ts-lib-0.1.0-0.tgz#3db4d243bc06a2b3421826b0e7f8de88d54e8ecc"
+  dependencies:
+    "@babel/core" "^7.0.0-beta.46"
+    "@babel/preset-env" "^7.0.0-beta.46"
+    "@babel/preset-typescript" "^7.0.0-beta.46"
+    "@babel/register" "^7.0.0-beta.46"
+    "@start/plugin-find" "^0.1.0-4"
+    "@start/plugin-lib-babel" "^0.1.0-1"
+    "@start/plugin-lib-codecov" "^0.1.0-1"
+    "@start/plugin-lib-eslint" "^0.1.0-3"
+    "@start/plugin-lib-istanbul" "^0.1.0-3"
+    "@start/plugin-lib-npm-publish" "^0.1.0-2"
+    "@start/plugin-lib-npm-version" "^0.1.0-2"
+    "@start/plugin-lib-tape" "^0.1.0-2"
+    "@start/plugin-lib-typescript-check" "^0.1.0-1"
+    "@start/plugin-lib-typescript-generate" "^0.1.0-2"
+    "@start/plugin-overwrite" "^0.1.0-3"
+    "@start/plugin-parallel" "^0.1.0-4"
+    "@start/plugin-read" "^0.1.0-3"
+    "@start/plugin-remove" "^0.1.0-2"
+    "@start/plugin-rename" "^0.1.0-3"
+    "@start/plugin-sequence" "^0.1.0-3"
+    "@start/plugin-watch" "^0.1.0-3"
+    "@start/plugin-write" "^0.1.0-4"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -1533,7 +1560,7 @@ eslint-visitor-keys@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#3f3180fb2e291017716acb4c9d6d5b5c34a6a81d"
 
-eslint@^4.18.2:
+eslint@^4.18.2, eslint@^4.19.1:
   version "4.19.1"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.19.1.tgz#32d1d653e1d90408854bfb296f076ec7e186a300"
   dependencies:
