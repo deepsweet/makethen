@@ -16,13 +16,7 @@
     "node": ">=6"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.46",
-    "@babel/preset-env": "^7.0.0-beta.46",
-    "@babel/preset-typescript": "^7.0.0-beta.46",
-    "@babel/register": "^7.0.0-beta.46",
-    "@deepsweet/start-preset-node-ts-lib": "^0.1.0-0",
-    "@start/cli": "^0.1.0-6",
-    "@start/reporter-verbose": "^0.1.0-2",
+    "@deepsweet/start-preset-node-ts-lib": "^0.1.0-5",
     "@types/node": "^9.6.5",
     "eslint": "^4.19.1",
     "eslint-config-standard": "^11.0.0",
@@ -30,38 +24,8 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
-    "esm": "^3.0.25",
-    "tap-diff": "^0.1.1",
     "typescript": "^2.8.3",
     "typescript-eslint-parser": "^15.0.0"
-  },
-  "start": {
-    "preset": "@deepsweet/start-preset-node-ts-lib",
-    "require": [
-      "esm",
-      [
-        "@babel/register",
-        {
-          "presets": [
-            [
-              "@babel/preset-env",
-              {
-                "targets": {
-                  "node": "current"
-                },
-                "modules": false
-              }
-            ],
-            "@babel/preset-typescript"
-          ],
-          "extensions": [
-            ".ts",
-            ".js"
-          ]
-        }
-      ]
-    ],
-    "reporter": "@start/reporter-verbose"
   },
   "eslintConfig": {
     "parser": "typescript-eslint-parser",
