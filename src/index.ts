@@ -15,7 +15,9 @@ function makethen<A1, A2, A3, R>(fn: (arg1: A1, arg2: A2, arg3: A3, cb: NodeCall
 function makethen (fn) {
   return (...args) => new Promise((resolve, reject) => {
     fn(...args, (error, ...results) => {
-      if (error !== null) {
+      // Node.js 8.11.3 LTS `fs.utimes()` returns `undefined`
+      // instead of `null` as a first argument
+      if (error != null) {
         return reject(error)
       }
 
