@@ -1,13 +1,12 @@
 # makethen
 
-[![npm](https://img.shields.io/npm/v/makethen.svg?style=flat-square)](https://www.npmjs.com/package/makethen) [![linux](https://img.shields.io/travis/deepsweet/makethen/master.svg?label=linux&style=flat-square)](https://travis-ci.org/deepsweet/makethen) [![coverage](https://img.shields.io/codecov/c/github/deepsweet/makethen.svg?style=flat-square)](https://codecov.io/github/deepsweet/makethen)
+[![npm](https://img.shields.io/npm/v/makethen.svg?style=flat-square)](https://www.npmjs.com/package/makethen) [![tests](https://img.shields.io/travis/deepsweet/makethen/master.svg?label=tests&style=flat-square)](https://travis-ci.org/deepsweet/makethen) [![coverage](https://img.shields.io/codecov/c/github/deepsweet/makethen.svg?style=flat-square)](https://codecov.io/github/deepsweet/makethen)
 
-Promisify Node.js-style callbacks with native Promise.
+Strongly typed (up to 3 arguments and 3 result params) promisify for Node.js-style callbacks.
 
 ## Requirements
 
-* Node.js >= 6
-* [`esm` loader](https://github.com/standard-things/esm)
+* Node.js >= 8.6.0
 
 ## Install
 

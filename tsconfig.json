@@ -5,7 +5,7 @@
     "pretty": true,
     "lib": ["esnext"],
     "moduleResolution": "node",
-    "typeRoots": [ "types/", "node_modules/@types/" ]
+    "skipLibCheck": true
   },
   "exclude": ["node_modules/", "coverage/", "packages/*/build/"]
 }
