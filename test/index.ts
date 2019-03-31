@@ -1,199 +1,216 @@
 /* eslint-disable promise/always-return */
 /* eslint-disable promise/catch-or-return */
-import test from 'tape'
+import test from 'blue-tape'
 
 import makethen from '../src/'
 
-test('export', (t) => {
+// test('export', (t) => {
+//   t.equal(
+//     typeof makethen,
+//     'function',
+//     'must be a function'
+//   )
+// })
+
+// test('no error', async (t) => {
+//   const callback = (arg: number, cb: (err: any, res: any) => void) => cb(null, arg)
+
+//   const result = await makethen(callback)(123)
+
+//   t.equal(
+//     result,
+//     123,
+//     'should resolve with result'
+//   )
+// })
+
+test('error', async (t) => {
+  const callback = (cb: (err: any) => void) => cb(new Error('foo'))
+
+  try {
+    await makethen(callback)()
+    t.fail('should never happen')
+  } catch (error) {
+    t.equal(
+      error.message,
+      'foo',
+      'should reject with error message'
+    )
+  }
+})
+
+test('no arguments + no result', async (t) => {
+  const callback = (cb: (err: any) => void) => cb(null)
+  const result: void = await makethen(callback)()
+
   t.equal(
-    typeof makethen,
-    'function',
-    'must be a function'
+    typeof result,
+    'undefined',
+    'should resolve with no result'
   )
-
-  t.end()
 })
 
-test('resolve when there is no error', (t) => {
-  const callbackish = (arg: number, cb: (err: any, res: any) => void) => cb(null, true)
+test('no arguments + 1 result', async (t) => {
+  const callback = (cb: (err: any, res: number) => void) => cb(null, 123)
+  const result: number = await makethen(callback)()
 
-  makethen(callbackish)(123).then(() => {
-    t.end()
-  })
+  t.equal(
+    result,
+    123,
+    'should resolve with result'
+  )
 })
 
-test('reject when there is an error', (t) => {
-  const callbackish = (arg: number, cb: (err: any, res: any) => void) => cb(new Error('foo'), true)
+test('no arguments + 2 results', async (t) => {
+  const callback = (cb: (err: any, res1: number, res2: boolean) => void) => cb(null, 123, true)
+  const result: [number, boolean] = await makethen(callback)()
 
-  makethen(callbackish)(123).catch(() => {
-    t.end()
-  })
+  t.deepEqual(
+    result,
+    [123, true],
+    'should resolve with array of results'
+  )
 })
 
-test('1 argument + no result', (t) => {
-  const callbackish = (arg: number, cb: (err: any) => void) => cb(null)
+test('no arguments + 3 results', async (t) => {
+  const callback = (cb: (err: any, res1: number, res2: boolean, res3: string) => void) => cb(null, 123, true, 'foo')
+  const result: [number, boolean, string] = await makethen(callback)()
 
-  makethen(callbackish)(123).then((result: undefined) => {
-    t.equal(
-      typeof result,
-      'undefined',
-      'no result'
-    )
-
-    t.end()
-  })
+  t.deepEqual(
+    result,
+    [123, true, 'foo'],
+    'should resolve with array of results'
+  )
 })
 
-test('1 argument + 1 result', (t) => {
-  const callbackish = (arg: number, cb: (err: any, res: boolean) => void) => cb(null, true)
+test('1 argument + no result', async (t) => {
+  const callback = (arg: number, cb: (err: any) => void) => cb(null)
+  const result: void = await makethen(callback)(123)
 
-  makethen(callbackish)(123).then((result: boolean) => {
-    t.equal(
-      result,
-      true,
-      'result'
-    )
-
-    t.end()
-  })
+  t.equal(
+    typeof result,
+    'undefined',
+    'should resolve with no result'
+  )
 })
 
-test('1 argument + 2 results', (t) => {
-  const callbackish = (arg: number, cb: (err: any, res1: boolean, res2: number) => void) => cb(null, true, 123)
+test('1 argument + 1 result', async (t) => {
+  const callback = (arg: number, cb: (err: any, res: number) => void) => cb(null, arg)
+  const result: number = await makethen(callback)(123)
 
-  makethen(callbackish)(123).then((result: [boolean, number]) => {
-    t.deepEqual(
-      result,
-      [true, 123],
-      'array of 2 results'
-    )
-
-    t.end()
-  })
+  t.equal(
+    result,
+    123,
+    'should resolve with result'
+  )
 })
 
-test('1 argument + 3 results', (t) => {
-  const callbackish = (arg: number, cb: (err: any, res1: boolean, res2: number, res3: string) => void) => cb(null, true, 123, 'foo')
+test('1 argument + 2 results', async (t) => {
+  const callback = (arg: number, cb: (err: any, res1: number, res2: boolean) => void) => cb(null, arg, true)
+  const result: [number, boolean] = await makethen(callback)(123)
 
-  makethen(callbackish)(123).then((result: [boolean, number, string]) => {
-    t.deepEqual(
-      result,
-      [true, 123, 'foo'],
-      'array of 3 results'
-    )
-
-    t.end()
-  })
+  t.deepEqual(
+    result,
+    [123, true],
+    'should resolve with array of results'
+  )
 })
 
-test('2 arguments + no result', (t) => {
-  const callbackish = (arg1: number, arg2: string, cb: (err: any) => void) => cb(null)
+test('1 argument + 3 results', async (t) => {
+  const callback = (arg: number, cb: (err: any, res1: number, res2: boolean, res3: string) => void) => cb(null, arg, true, 'foo')
+  const result: [number, boolean, string] = await makethen(callback)(123)
 
-  makethen(callbackish)(123, 'foo').then((result: undefined) => {
-    t.equal(
-      typeof result,
-      'undefined',
-      'no result'
-    )
-
-    t.end()
-  })
+  t.deepEqual(
+    result,
+    [123, true, 'foo'],
+    'should resolve with array of results'
+  )
 })
 
-test('2 arguments + 1 result', (t) => {
-  const callbackish = (arg1: number, arg2: string, cb: (err: any, res: boolean) => void) => cb(null, true)
+test('2 arguments + no result', async (t) => {
+  const callback = (arg1: number, arg2: boolean, cb: (err: any) => void) => cb(null)
+  const result: void = await makethen(callback)(123, true)
 
-  makethen(callbackish)(123, 'foo').then((result: boolean) => {
-    t.deepEqual(
-      result,
-      true,
-      'result'
-    )
-
-    t.end()
-  })
+  t.equal(
+    typeof result,
+    'undefined',
+    'should resolve with no result'
+  )
 })
 
-test('2 arguments + 2 results', (t) => {
-  const callbackish = (arg1: number, arg2: string, cb: (err: any, res1: boolean, res2: number) => void) => cb(null, true, 123)
+test('2 arguments + 1 result', async (t) => {
+  const callback = (arg1: number, arg2: boolean, cb: (err: any, res: number) => void) => cb(null, arg1)
+  const result: number = await makethen(callback)(123, true)
 
-  makethen(callbackish)(123, 'foo').then((result: [boolean, number]) => {
-    t.deepEqual(
-      result,
-      [true, 123],
-      'array of 2 results'
-    )
-
-    t.end()
-  })
+  t.equal(
+    result,
+    123,
+    'should resolve with result'
+  )
 })
 
-test('2 arguments + 3 results', (t) => {
-  const callbackish = (arg1: number, arg2: string, cb: (err: any, res1: boolean, res2: number, res3: string) => void) => cb(null, true, 123, 'foo')
+test('2 arguments + 2 results', async (t) => {
+  const callback = (arg1: number, arg2: boolean, cb: (err: any, res1: number, res2: boolean) => void) => cb(null, arg1, arg2)
+  const result: [number, boolean] = await makethen(callback)(123, true)
 
-  makethen(callbackish)(123, 'foo').then((result: [boolean, number, string]) => {
-    t.deepEqual(
-      result,
-      [true, 123, 'foo'],
-      'result'
-    )
-
-    t.end()
-  })
+  t.deepEqual(
+    result,
+    [123, true],
+    'should resolve with array of results'
+  )
 })
 
-test('3 arguments + no result', (t) => {
-  const callbackish = (arg1: number, arg2: string, arg3: boolean, cb: (err: any) => void) => cb(null)
+test('2 arguments + 3 results', async (t) => {
+  const callback = (arg1: number, arg2: boolean, cb: (err: any, res1: number, res2: boolean, res3: string) => void) => cb(null, arg1, arg2, 'foo')
+  const result: [number, boolean, string] = await makethen(callback)(123, true)
 
-  makethen(callbackish)(123, 'foo', true).then((result: undefined) => {
-    t.equal(
-      typeof result,
-      'undefined',
-      'no result'
-    )
-
-    t.end()
-  })
+  t.deepEqual(
+    result,
+    [123, true, 'foo'],
+    'should resolve with array of results'
+  )
 })
 
-test('3 arguments + 1 result', (t) => {
-  const callbackish = (arg1: number, arg2: string, arg3: boolean, cb: (err: any, res: boolean) => void) => cb(null, true)
+test('3 arguments + no result', async (t) => {
+  const callback = (arg1: number, arg2: boolean, arg3: string, cb: (err: any) => void) => cb(null)
+  const result: void = await makethen(callback)(123, true, 'foo')
 
-  makethen(callbackish)(123, 'foo', true).then((result: boolean) => {
-    t.deepEqual(
-      result,
-      true,
-      'result'
-    )
-
-    t.end()
-  })
+  t.equal(
+    typeof result,
+    'undefined',
+    'should resolve with no result'
+  )
 })
 
-test('3 arguments + 2 results', (t) => {
-  const callbackish = (arg1: number, arg2: string, arg3: boolean, cb: (err: any, res1: boolean, res2: number) => void) => cb(null, true, 123)
+test('3 arguments + 1 result', async (t) => {
+  const callback = (arg1: number, arg2: boolean, arg3: string, cb: (err: any, res: number) => void) => cb(null, arg1)
+  const result: number = await makethen(callback)(123, true, 'foo')
 
-  makethen(callbackish)(123, 'foo', true).then((result: [boolean, number]) => {
-    t.deepEqual(
-      result,
-      [true, 123],
-      'array of 2 results'
-    )
-
-    t.end()
-  })
+  t.equal(
+    result,
+    123,
+    'should resolve with result'
+  )
 })
 
-test('3 arguments + 3 results', (t) => {
-  const callbackish = (arg1: number, arg2: string, arg3: boolean, cb: (err: any, res1: boolean, res2: number, res3: string) => void) => cb(null, true, 123, 'foo')
+test('3 arguments + 2 results', async (t) => {
+  const callback = (arg1: number, arg2: boolean, arg3: string, cb: (err: any, res1: number, res2: boolean) => void) => cb(null, arg1, arg2)
+  const result: [number, boolean] = await makethen(callback)(123, true, 'foo')
 
-  makethen(callbackish)(123, 'foo', true).then((result: [boolean, number, string]) => {
-    t.deepEqual(
-      result,
-      [true, 123, 'foo'],
-      'array of 3 results'
-    )
+  t.deepEqual(
+    result,
+    [123, true],
+    'should resolve with array of results'
+  )
+})
 
-    t.end()
-  })
+test('3 arguments + 3 results', async (t) => {
+  const callback = (arg1: number, arg2: boolean, arg3: string, cb: (err: any, res1: number, res2: boolean, res3: string) => void) => cb(null, arg1, arg2, arg3)
+  const result: [number, boolean, string] = await makethen(callback)(123, true, 'foo')
+
+  t.deepEqual(
+    result,
+    [123, true, 'foo'],
+    'should resolve with array of results'
+  )
 })
